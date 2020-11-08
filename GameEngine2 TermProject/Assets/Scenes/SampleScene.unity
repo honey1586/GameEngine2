@@ -330,6 +330,7 @@ MonoBehaviour:
   walkSpeed: 30
   lookSensitivity: 5
   cameraRotationLimit: 60
+  jumpForce: 5
 --- !u!54 &878277100
 Rigidbody:
   m_ObjectHideFlags: 0
