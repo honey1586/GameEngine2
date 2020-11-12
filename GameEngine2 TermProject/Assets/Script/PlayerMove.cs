@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float walkSpeed;
+    [SerializeField] private float runSpeed;
+
+    private float _applySpeed;
+    
 
     [SerializeField] private float lookSensitivity;
 
@@ -20,7 +25,9 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody _rigid;
     
     // 상태변수
-    private bool isGround = true;
+    private bool _isWalk = false;
+    private bool _isRun = false;
+    private bool _isGround = true;
     private CapsuleCollider _capsuleCollider;
     
     // Start is called before the first frame update
@@ -29,6 +36,9 @@ public class PlayerMove : MonoBehaviour
         _capsuleCollider = GetComponent<CapsuleCollider>();
         _rigid = GetComponent<Rigidbody>();
         _camera = GetComponentInChildren<Camera>();
+        
+        // initialize
+        _applySpeed = walkSpeed;
     }
 
     // Update is called once per frame
@@ -36,6 +46,7 @@ public class PlayerMove : MonoBehaviour
     {
         IsGround();
         TryJump();
+        TryRun();
         Move();
         CameraRotation();
         CharacterRotation();
@@ -53,12 +64,35 @@ public class PlayerMove : MonoBehaviour
         
         _rigid.MovePosition(transform.position+ _velocity*Time.deltaTime);
     }
+    // 달리기
+    private void TryRun()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            Running();
+        }
     
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            RunningCancel();
+        }
+    }
+    
+    private void Running()
+    {
+        _isRun = true;
+        _applySpeed = runSpeed;
+    }
+    private void RunningCancel()
+    {
+        _isRun = false;
+        _applySpeed = walkSpeed;
+    }
     ///////////////////////////////////////////////////////
     /// 점프
     private void TryJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        if (Input.GetKeyDown(KeyCode.Space) && _isGround)
         {
             Jump();
         }
@@ -71,7 +105,7 @@ public class PlayerMove : MonoBehaviour
 
     private void IsGround()
     {
-        isGround = Physics.Raycast(transform.position, Vector3.down, _capsuleCollider.bounds.extents.y + 0.1f);
+        _isGround = Physics.Raycast(transform.position, Vector3.down, _capsuleCollider.bounds.extents.y + 0.1f);
     }
     /// 점프
     ///////////////////////////////////////////////////////
