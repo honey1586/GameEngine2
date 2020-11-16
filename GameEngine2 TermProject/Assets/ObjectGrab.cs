@@ -53,7 +53,7 @@ public class ObjectGrab : MonoBehaviour
                 isGrabed = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 _rigid.isKinematic = false;
                 transform.parent = null;
