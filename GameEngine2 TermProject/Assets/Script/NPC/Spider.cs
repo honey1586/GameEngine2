@@ -103,9 +103,8 @@ public class Spider : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Grabable"))
+        if (other.gameObject.CompareTag("Grabable") || other.gameObject.CompareTag("Killable"))
         {
-           
             SpiderDead();
         }
     }
