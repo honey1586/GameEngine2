@@ -4,54 +4,101 @@ using UnityEngine;
 
 public class TouchObject : MonoBehaviour
 {
+    public enum TrapType
+    {
+        FallingTrap,
+        RollingTrap,
+        SawTrap
+    }
+
+    public TrapType trapType;
     private bool isTouched = false;
 
     private bool isTouching = false;
-
+    
     private bool isTouchable = false;
     // Start is called before the first frame update
     public GameObject[] StopObjs;
     public Transform player;
-    
+
+    public GameObject alphaWall;
+
+    public Rigidbody[] SawTrapRigids;
+
+    public BoxCollider[] SawEdgeBoxCollider;
+
+    public Spider spider;
+
+    private bool isSpiderDead = false;
+
+    private bool isSpiderHit = false;
     // Update is called once per frame
     void Update()
     {
-        if (isTouched && !isTouching)
+        if (trapType == TrapType.FallingTrap)
         {
-            foreach (var obj in StopObjs)
+            if (isTouched && !isTouching)
             {
-                Animation[] anims = obj.GetComponentsInChildren<Animation>();
-
-                foreach (var anim in anims)
+                foreach (var obj in StopObjs)
                 {
+                    Animation[] anims = obj.GetComponentsInChildren<Animation>();
 
-                    anim.clip.SampleAnimation(anim.gameObject, 0);
-                    Debug.Log("됨");
-                    anim.Stop();
+                    foreach (var anim in anims)
+                    {
 
+                        anim.clip.SampleAnimation(anim.gameObject, 0);
+                        Debug.Log("됨");
+                        anim.Stop();
+
+                    }
                 }
+
+                isTouching = true;
             }
 
-            isTouching = true;
-        }
+            if (!isTouched && isTouching)
+            {
 
-        if (!isTouched && isTouching)
+                foreach (var obj in StopObjs)
+                {
+                    Animation[] anims = obj.GetComponentsInChildren<Animation>();
+
+                    foreach (var anim in anims)
+                    {
+                        anim.Play();
+                    }
+
+                }
+
+                isTouching = false;
+            }
+        }
+        else if (trapType == TrapType.RollingTrap)
         {
+            if (isTouched)
+            {
+                alphaWall.SetActive(true);
+            }
             
-            foreach (var obj in StopObjs)
+        }
+        else if (trapType == TrapType.SawTrap)
+        {
+            isSpiderDead = spider.isDead;
+            isSpiderHit = spider.isHit;
+            if (isTouched&&(!isSpiderDead||isSpiderHit))
             {
-                Animation[] anims = obj.GetComponentsInChildren<Animation>();
-
-                foreach (var anim in anims)
+                foreach (var boxCol in SawEdgeBoxCollider)
                 {
-                    anim.Play();
+                    boxCol.enabled = false;
                 }
 
+                foreach (var sawRigid in SawTrapRigids)
+                {
+                    sawRigid.isKinematic = false;
+                }
             }
-
-            isTouching = false;
         }
-
+        
         isInRange();
     }
 

@@ -18,7 +18,8 @@ public class Spider : MonoBehaviour
     
     private Vector3 SpiderStartPos;
 
-    private bool isDead = false;
+    public bool isDead = false;
+    public bool isHit = false;
     private bool isAttack = false;
 
     private float timer;
@@ -36,17 +37,17 @@ public class Spider : MonoBehaviour
     {
         if (!isDead)
         {
-            if (Vector3.Distance(target.position, transform.position) <= 10)
+            if (Vector3.Distance(target.position, transform.position) <= 15)
             {
                 TraceTarget();
             }
 
-            if (Vector3.Distance(target.position, transform.position) > 10)
+            if (Vector3.Distance(target.position, transform.position) > 15)
             {
                 StopTrace();
             }
 
-            if (Vector3.Distance(target.position, transform.position) <= 2.0f)
+            if (Vector3.Distance(target.position, transform.position) <= 4.0f)
             {
                 if (!isAttack)
                 {
@@ -103,9 +104,16 @@ public class Spider : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Grabable") || other.gameObject.CompareTag("Killable"))
+        if (other.gameObject.CompareTag("Grabable"))
+        {
+            isHit = true;
+            SpiderDead();
+        }
+
+        if (other.gameObject.CompareTag("Killable"))
         {
             SpiderDead();
+
         }
     }
 }
