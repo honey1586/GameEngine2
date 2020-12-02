@@ -46,6 +46,19 @@ public class HandGrab : MonoBehaviour
                     }
                 }
             }
+            else if (_hitInfo.transform.gameObject.CompareTag("Touchable"))
+            {
+                if (_hitInfo.transform.gameObject.GetComponent<TouchObject>().GetTouchable())
+                {
+                    TouchObject touchObj = _hitInfo.transform.gameObject.GetComponent<TouchObject>();
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Debug.Log("Touch");
+                        touchObj.SetIsTouched();
+                    }
+                }
+
+            }
         }
     }
 }
