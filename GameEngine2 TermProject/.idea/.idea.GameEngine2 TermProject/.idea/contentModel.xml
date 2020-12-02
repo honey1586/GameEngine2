@@ -13,6 +13,9 @@
           <e p="FallingTrap.cs" t="Include" />
           <e p="HandGrab.cs" t="Include" />
           <e p="KillObject.cs" t="Include" />
+          <e p="NPC" t="Include">
+            <e p="Spider.cs" t="Include" />
+          </e>
           <e p="ObjectGrab.cs" t="Include" />
           <e p="PlayerMove.cs" t="Include" />
           <e p="ShootBall.cs" t="Include" />
