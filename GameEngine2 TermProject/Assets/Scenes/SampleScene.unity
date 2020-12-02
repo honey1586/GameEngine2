@@ -717,7 +717,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 98113ec72bbc0b64da4126c8f8f6d0a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1488,23 +1488,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2047580979893280930, guid: f0335920652a83f458cf3a2e7cff6a41, type: 3}
   m_PrefabInstance: {fileID: 210180851}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &568262526 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3984125721556818044, guid: 7cf1eeba370b07b4dbf20ccf7d54dfd3, type: 3}
-  m_PrefabInstance: {fileID: 3984125720992081666}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &568262532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568262526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0cc3eeb85474b24ca9a0b018fe47a8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &568907801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4991,7 +4974,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 98113ec72bbc0b64da4126c8f8f6d0a8, type: 2}
+  - {fileID: 2100000, guid: e0f306e0fd005fd43b2c69968cade893, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5501,10 +5484,6 @@ PrefabInstance:
     - target: {fileID: 3984125722037719019, guid: 7cf1eeba370b07b4dbf20ccf7d54dfd3, type: 3}
       propertyPath: m_Name
       value: FallingTraps
-      objectReference: {fileID: 0}
-    - target: {fileID: 3984125722423652492, guid: 7cf1eeba370b07b4dbf20ccf7d54dfd3, type: 3}
-      propertyPath: m_TagString
-      value: SafeZone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf1eeba370b07b4dbf20ccf7d54dfd3, type: 3}

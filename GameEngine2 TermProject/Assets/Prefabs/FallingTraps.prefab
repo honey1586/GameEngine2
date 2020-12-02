@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3984125721556818050}
   - component: {fileID: 3984125721556818045}
   - component: {fileID: 3984125721556818049}
+  - component: {fileID: 568262532}
   m_Layer: 0
   m_Name: FallingTrap
   m_TagString: Killable
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 98113ec72bbc0b64da4126c8f8f6d0a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,6 +114,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &568262532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3984125721556818044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0cc3eeb85474b24ca9a0b018fe47a8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3984125722037719019
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +173,7 @@ GameObject:
   - component: {fileID: 3984125722423652498}
   m_Layer: 0
   m_Name: SafeZone
-  m_TagString: Untagged
+  m_TagString: SafeZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,7 +219,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 98113ec72bbc0b64da4126c8f8f6d0a8, type: 2}
+  - {fileID: 2100000, guid: e0f306e0fd005fd43b2c69968cade893, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
