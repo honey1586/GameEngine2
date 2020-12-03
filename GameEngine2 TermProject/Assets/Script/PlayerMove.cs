@@ -143,7 +143,8 @@ public class PlayerMove : MonoBehaviour
 
     public void PlayerDie()
     {
-        Debug.Log("Die");
+        gameObject.transform.position = startPos.position;
+        Debug.Log("Player Die");
         deadScene.SetActive(true);
     }
 }

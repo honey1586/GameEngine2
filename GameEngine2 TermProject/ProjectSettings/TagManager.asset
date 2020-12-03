@@ -8,6 +8,7 @@ TagManager:
   - Killable
   - Touchable
   - SafeZone
+  - Eatable
   layers:
   - Default
   - TransparentFX

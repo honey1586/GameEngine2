@@ -10,6 +10,9 @@ public class Consumer : MonoBehaviour
     float lastChange;
     float interval = 1f;
 
+    public Transform player;
+    private bool IsTouchable;
+    
     void Start()
     {
         bool skipFirst = transform.childCount > 4;
@@ -24,23 +27,40 @@ public class Consumer : MonoBehaviour
 
     void Update()
     {
-        if (Time.time - lastChange > interval)
-        {
-            Consume();
-            lastChange = Time.time;
-        }
+        isInRange();
     }
 
-    void Consume()
+    public void Consume()
     {
-        if (currentIndex != portions.Length)
-            portions[currentIndex].SetActive(false);
-        currentIndex++;
-        if (currentIndex > portions.Length)
-            currentIndex = 0;
-        else if (currentIndex == portions.Length)
-            return;
-        portions[currentIndex].SetActive(true);
+        
+            if (currentIndex != portions.Length)
+                portions[currentIndex].SetActive(false);
+            currentIndex++;
+            if (currentIndex > portions.Length)
+                currentIndex = portions.Length;
+            if (currentIndex == portions.Length)
+                return;
+            portions[currentIndex].SetActive(true);
+        
     }
 
+    public void isInRange()
+    {
+        float dist = Vector3.Distance(gameObject.transform.position, player.position);
+
+        if (dist < 2.5f)
+        {
+            IsTouchable = true;
+        }
+        else
+        {
+            IsTouchable = false;
+        }
+  
+    }
+    
+    public bool GetIsTouchable()
+    {
+        return IsTouchable;
+    }
 }

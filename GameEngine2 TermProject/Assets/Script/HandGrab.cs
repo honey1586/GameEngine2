@@ -29,20 +29,24 @@ public class HandGrab : MonoBehaviour
                       
                         objGrab.objrigid.isKinematic = true;
                         objGrab.transform.parent = transform;
-                        
+                        objGrab.isGrabed = true;
                     }
 
                     if (Input.GetMouseButtonUp(0))
                     {
                         objGrab.objrigid.isKinematic = false;
                         objGrab.transform.parent = null;
+                        objGrab.isGrabed = false;
 
                     }
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         objGrab.objrigid.isKinematic = false;
+                        objGrab.isGrabed = false;
                         objGrab.transform.parent = null;
+                        objGrab.isShoot = true;
                         objGrab.objrigid.AddForce(transform.forward*throwForce,ForceMode.Impulse);
+                        
                     }
                 }
             }
@@ -59,6 +63,19 @@ public class HandGrab : MonoBehaviour
                 }
 
             }
+            else if (_hitInfo.transform.gameObject.CompareTag("Eatable"))
+            {
+                if (_hitInfo.transform.gameObject.GetComponent<Consumer>().GetIsTouchable())
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Debug.Log("Touch");
+                        _hitInfo.transform.gameObject.GetComponent<Consumer>().Consume();
+                        //여기에 배고픔 4분의1씩 차는거 구현하심됩니다.
+                    }
+                }
+            }
+            
         }
     }
 }

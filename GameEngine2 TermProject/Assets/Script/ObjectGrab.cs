@@ -12,8 +12,11 @@ public class ObjectGrab : MonoBehaviour
 
     private bool IsGrabable = false;
 
-    private bool isGrabed = false;
-    
+    public bool isGrabed = false;
+
+    public bool isShoot = false;
+
+    private float shootTimer = 5.0f;
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,6 +29,15 @@ public class ObjectGrab : MonoBehaviour
 
         isInRange();
 
+        if (isShoot)
+        {
+            shootTimer -= Time.deltaTime;
+            if (shootTimer < 0)
+            {
+                shootTimer = 5.0f;
+                isShoot = false;
+            }
+        }
     }
 
     public void isInRange()

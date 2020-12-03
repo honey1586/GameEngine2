@@ -125,8 +125,12 @@ public class Spider : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Grabable"))
         {
-            isHit = true;
-            SpiderDead();
+            ObjectGrab objGrab = other.gameObject.GetComponent<ObjectGrab>();
+            if (!objGrab.isGrabed&&objGrab.isShoot)
+            {
+                isHit = true;
+                SpiderDead();
+            }
         }
 
         if (other.gameObject.CompareTag("Killable"))
