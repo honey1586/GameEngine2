@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -30,6 +32,8 @@ public class PlayerMove : MonoBehaviour
     private bool _isGround = true;
     private CapsuleCollider _capsuleCollider;
     
+    //시작위치
+    public Transform startPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -126,5 +130,19 @@ public class PlayerMove : MonoBehaviour
         Vector3 _charcterRotationY = new Vector3(0f, _yRotation, 0f)*lookSensitivity;
         _rigid.MoveRotation(_rigid.rotation*Quaternion.Euler(_charcterRotationY));
     }
-    
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("Killable"))
+        {
+            PlayerDie();
+        }
+    }
+
+    public void PlayerDie()
+    {
+        Debug.Log("Die");
+        SceneManager.LoadScene(0);
+        gameObject.transform.position = startPos.position;
+    }
 }

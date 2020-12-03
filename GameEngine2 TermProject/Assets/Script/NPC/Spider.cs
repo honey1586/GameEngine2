@@ -24,6 +24,8 @@ public class Spider : MonoBehaviour
 
     private float timer;
 
+    private float _playerDieTimer =2.0f;
+    
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -49,9 +51,25 @@ public class Spider : MonoBehaviour
 
             if (Vector3.Distance(target.position, transform.position) <= 4.0f)
             {
+                
+               
+                
                 if (!isAttack)
                 {
                     AttackTarget();
+                }
+                else
+                {
+                    if (_playerDieTimer < 0)
+                    {
+                        target.gameObject.GetComponent<PlayerMove>().PlayerDie();
+                        _playerDieTimer = 2.0f;
+                    }
+                    else
+                    {
+                        _playerDieTimer -= Time.deltaTime;
+
+                    }
                 }
             }
         }
@@ -92,6 +110,7 @@ public class Spider : MonoBehaviour
         isAttack = true;
         nav.Stop();
         anim.SetTrigger("Attack");
+       
     }
 
     private void SpiderDead()
