@@ -10,6 +10,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
 
+    public GameObject deadScene;
+
     private float _applySpeed;
     
 
@@ -142,7 +144,6 @@ public class PlayerMove : MonoBehaviour
     public void PlayerDie()
     {
         Debug.Log("Die");
-        SceneManager.LoadScene(0);
-        gameObject.transform.position = startPos.position;
+        deadScene.SetActive(true);
     }
 }
