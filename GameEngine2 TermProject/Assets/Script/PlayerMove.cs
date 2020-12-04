@@ -57,6 +57,11 @@ public class PlayerMove : MonoBehaviour
         Move();
         CameraRotation();
         CharacterRotation();
+        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void Move()
