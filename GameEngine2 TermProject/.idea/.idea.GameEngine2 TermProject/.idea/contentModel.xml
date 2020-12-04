@@ -44,6 +44,7 @@
           </e>
           <e p="ObjectGrab.cs" t="Include" />
           <e p="PlayerMove.cs" t="Include" />
+          <e p="PlayTimer.cs" t="Include" />
           <e p="RollingBallTrap.cs" t="Include" />
           <e p="SetFireRate.cs" t="Include" />
           <e p="ShootBall.cs" t="Include" />

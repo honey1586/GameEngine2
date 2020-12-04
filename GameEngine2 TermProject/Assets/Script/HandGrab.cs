@@ -5,6 +5,7 @@ using UnityEngine;
 public class HandGrab : MonoBehaviour
 {
     public float throwForce = 10;
+    public UserInterface ui;
     private RaycastHit _hitInfo;
 
     // Start is called before the first frame update
@@ -71,6 +72,8 @@ public class HandGrab : MonoBehaviour
                     {
                         Debug.Log("Touch");
                         _hitInfo.transform.gameObject.GetComponent<Consumer>().Consume();
+                        ui.HungryBar.value += 25f;
+
                         //여기에 배고픔 4분의1씩 차는거 구현하심됩니다.
                     }
                 }
