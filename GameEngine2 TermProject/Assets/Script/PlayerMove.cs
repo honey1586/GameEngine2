@@ -13,7 +13,8 @@ public class PlayerMove : MonoBehaviour
     public GameObject deadScene;
 
     private float _applySpeed;
-    
+
+    [SerializeField] private AudioSource audio;
 
     [SerializeField] private float lookSensitivity;
 
@@ -143,6 +144,7 @@ public class PlayerMove : MonoBehaviour
 
     public void PlayerDie()
     {
+        audio.Play();
         gameObject.transform.position = startPos.position;
         Debug.Log("Player Die");
         deadScene.SetActive(true);

@@ -15,6 +15,8 @@ public class Spider : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rigid;
     [SerializeField] private BoxCollider boxCollider;
+
+    [SerializeField] private AudioSource audio;
     
     private Vector3 SpiderStartPos;
 
@@ -41,6 +43,7 @@ public class Spider : MonoBehaviour
         {
             if (Vector3.Distance(target.position, transform.position) <= 15)
             {
+                audio.Play();
                 TraceTarget();
             }
 

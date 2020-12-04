@@ -11,12 +11,14 @@ public class RollingBallTrap : MonoBehaviour
     public float rollingSpeed;
     private bool isRolling = false;
     private float _rollTimer = 3.0f;
+
+    [SerializeField] private AudioSource audio;
+
     // Start is called before the first frame update
     void Start()
     {
         ballRigidbody = rollingBall.GetComponent<Rigidbody>();
         ballRigidbody.maxAngularVelocity = 1500;
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,11 +35,12 @@ public class RollingBallTrap : MonoBehaviour
 
         if (_rollTimer < 0)
         {
-            
+            audio.Play();
             ballRigidbody.AddTorque(rollingBall.transform.forward*rollingSpeed,ForceMode.Impulse);
             Debug.Log("rolling");
             isRolling = false;
             _rollTimer = 3.0f;
         }
+
     }
 }
