@@ -23,7 +23,7 @@ public class Spider : MonoBehaviour
     public bool isDead = false;
     public bool isHit = false;
     private bool isAttack = false;
-
+    private bool SoundPlayed = false;
     private float timer;
 
     private float _playerDieTimer =2.0f;
@@ -43,13 +43,23 @@ public class Spider : MonoBehaviour
         {
             if (Vector3.Distance(target.position, transform.position) <= 15)
             {
-                audio.Play();
+                if (!SoundPlayed)
+                {
+                    audio.Play();
+                    SoundPlayed = true;
+                }
+
                 TraceTarget();
             }
 
             if (Vector3.Distance(target.position, transform.position) > 15)
             {
                 StopTrace();
+                if (SoundPlayed)
+                {
+                   
+                    SoundPlayed = false;
+                }
             }
 
             if (Vector3.Distance(target.position, transform.position) <= 4.0f)
